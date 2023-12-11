@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
+        with:
+          submodules: true
 
       - name: Build
         uses: threeal/cmake-action@v1.3.0
