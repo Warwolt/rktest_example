@@ -19,14 +19,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
+        with:
+          submodules: true
 
-      - name: Setup CMake
+      - name: Build
         uses: threeal/cmake-action@v1.3.0
         with:
           source-dir: ./cmake_example
-
-      - name: Build
-        run: cmake --build build
+          run-build: true
 
       - name: Run test suite
         run: ${{ matrix.executable }}
