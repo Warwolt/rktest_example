@@ -1,0 +1,3 @@
+[submodule "cmake/external/rktest"]
+	path = cmake/external/rktest
+	url = https://github.com/Warwolt/rktest.git
