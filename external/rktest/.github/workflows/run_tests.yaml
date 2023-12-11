@@ -1,0 +1,45 @@
+name: run_tests
+on:
+  push:
+jobs:
+  run_tests:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        include:
+          - os: windows-latest
+            executable: ./build/Debug/tests
+
+          - os: ubuntu-latest
+            executable: ./build/tests
+
+          - os: macos-latest
+            executable: ./build/tests
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup CMake
+        uses: threeal/cmake-action@v1.3.0
+        with:
+          options: rktest_build_tests=ON rktest_build_samples=ON
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest syrupy
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Run test suite
+        run: ${{ matrix.executable }}
+
+      - name: Run snapshot tests
+        run: pytest -vv
