@@ -9,7 +9,8 @@ One straight forward way to include RK Test into your project is to include it
 in your source directory as a git submodule, and then include it as a
 subdirectory in your `CMakeLists.txt`.
 
-This uses a project structure like the following:
+This uses a project structure like the following, where `factorial.c` contains
+the code we want to test:
 
 ```
 ├── CMakeLists.txt
@@ -61,3 +62,4 @@ add_executable(tests
 target_include_directories(tests PRIVATE src)
 target_link_libraries(tests PRIVATE rktest_main)
 ```
+****
