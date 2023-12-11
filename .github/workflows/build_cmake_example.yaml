@@ -1,0 +1,33 @@
+name: Build CMake Example
+on:
+  push:
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        include:
+          - os: windows-latest
+            executable: ./cmake_example/build/Debug/tests
+
+          - os: ubuntu-latest
+            executable: ./cmake_example/build/tests
+
+          - os: macos-latest
+            executable: ./cmake_example/build/tests
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup CMake
+        uses: threeal/cmake-action@v1.3.0
+        with:
+          source-dir: ./cmake_example
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Run test suite
+        run: ${{ matrix.executable }}
+
