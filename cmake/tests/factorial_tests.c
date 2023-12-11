@@ -1,5 +1,7 @@
 #include <rktest/rktest.h>
 
+#include "factorial.h"
+
 TEST(factorial_tests, factorial_of_negative_is_one) {
 	EXPECT_EQ(factorial(-1), 1);
 	EXPECT_EQ(factorial(-42), 1);
