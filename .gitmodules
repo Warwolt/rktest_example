@@ -1,3 +1,6 @@
 [submodule "cmake_example/external/rktest"]
 	path = cmake_example/external/rktest
 	url = https://github.com/Warwolt/rktest.git
+[submodule "external/rktest"]
+	path = external/rktest
+	url = https://github.com/Warwolt/rktest.git

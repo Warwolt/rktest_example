@@ -23,5 +23,5 @@ add_executable(tests
     tests/factorial_tests.c
 )
 target_include_directories(tests PRIVATE src)
-target_link_libraries(tests PRIVATE rktest_main)
+target_link_libraries(tests PRIVATE rktest)
 
